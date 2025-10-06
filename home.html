@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RenderCore Engine — Présentation</title>
-  <meta name="description" content="RenderCore Engine — moteur de jeu. Téléchargez la release et parcourez les screenshots." />
+  <title>RenderCore Engine — Overview</title>
+  <meta name="description" content="RenderCore Engine — lightweight 3D game engine. Download the release and check out the screenshots." />
   <style>
     :root{--bg:#0b0f16;--card:#0f1720;--accent:#7c5cff;--muted:#98a0b3;--glass: rgba(255,255,255,0.03)}
     *{box-sizing:border-box}
@@ -32,7 +32,6 @@
 
     footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
 
-    /* Lightbox */
     .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.75);z-index:999}
     .modal.open{display:flex}
     .modal-content{max-width:94%;max-height:92%;display:flex;align-items:center;gap:12px}
@@ -47,7 +46,6 @@
       .modal-img{max-width:100%}
       .modal-side{display:none}
     }
-
   </style>
 </head>
 <body>
@@ -57,7 +55,7 @@
         <div class="logo">RC</div>
         <div>
           <h1>RenderCore Engine</h1>
-          <p class="lead">Moteur 3D léger — low-poly friendly, pipeline C/C++, optimisé pour rapid prototyping.</p>
+          <p class="lead">A lightweight 3D engine for prototyping, modding, and importing classic assets.</p>
         </div>
       </div>
       <nav>
@@ -67,35 +65,35 @@
 
     <section class="hero">
       <div class="card">
-        <h2 style="margin-top:0">À propos</h2>
-        <p class="small">RenderCore Engine est conçu pour être simple à intégrer et rapide à prototyper. Cette page contient les screenshots fournis et le fichier <code>Release.zip</code> prêt à télécharger (présent dans le même dossier que ce fichier).</p>
+        <h2 style="margin-top:0">About</h2>
+        <p class="small">RenderCore Engine is designed for easy integration and fast prototyping. This page contains the provided screenshots and the <code>Release.zip</code> file ready for download (in the same folder as this HTML file).</p>
 
         <div class="features">
-          <div class="feature">● Render pipeline minimal</div>
-          <div class="feature">● Low-poly / stylisé</div>
-          <div class="feature">● Exportateur .b3d / .obj</div>
-          <div class="feature">● Small footprint</div>
+          <div class="feature">● Lightweight rendering pipeline</div>
+          <div class="feature">● Low-poly / stylized visuals</div>
+          <div class="feature">● Supports importing DFF, B3D, and OBJ models</div>
+          <div class="feature">● Compact and efficient runtime</div>
         </div>
 
         <div style="margin-top:16px">
           <h3 style="margin:0 0 8px 0">Instructions</h3>
           <ul class="small" style="margin:0;padding-left:18px;line-height:1.6;color:var(--muted)">
-            <li>Dézippez <code>Release.zip</code> pour obtenir les binaires et exemples.</li>
-            <li>Consultez le dossier <code>docs/</code> dans l'archive pour démarrer.</li>
+            <li>Unzip <code>Release.zip</code> to get binaries and example projects.</li>
+            <li>Check the <code>docs/</code> folder inside the archive for setup details.</li>
           </ul>
         </div>
       </div>
 
       <aside class="card download">
         <div style="text-align:center">
-          <div style="font-size:13px;color:var(--muted)">Dernière build</div>
-          <a class="btn" href="Release.zip" download>Télécharger Release.zip</a>
-          <div class="small" style="margin-top:8px">Taille du fichier : vérifiez localement (même dossier)</div>
+          <div style="font-size:13px;color:var(--muted)">Latest build</div>
+          <a class="btn" href="Release.zip" download>Download Release.zip</a>
+          <div class="small" style="margin-top:8px">File size: check locally (same folder)</div>
         </div>
 
         <div style="margin-top:14px;width:100%">
           <strong style="font-size:13px">Release notes</strong>
-          <p class="small" style="margin:6px 0 0">Prototype initial — rendu, scène, éditeur léger (WIP).</p>
+          <p class="small" style="margin:6px 0 0">Initial prototype — rendering, scene system, and early editor (WIP).</p>
         </div>
       </aside>
     </section>
@@ -111,16 +109,15 @@
     </section>
 
     <footer>
-      <p>RenderCore — build experimental • Tous droits réservés.</p>
+      <p>RenderCore — experimental build • All rights reserved.</p>
     </footer>
   </div>
 
-  <!-- Lightbox modal -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true">
-      <img id="modalImg" class="modal-img" src="1.PNG" alt="Screenshot large">
+      <img id="modalImg" class="modal-img" src="1.PNG" alt="Large screenshot">
       <div class="modal-side">
-        <button id="closeBtn" class="close-btn" aria-label="Fermer">✕</button>
+        <button id="closeBtn" class="close-btn" aria-label="Close">✕</button>
         <div id="thumbs"></div>
       </div>
     </div>
@@ -154,7 +151,7 @@
         const d = document.createElement('div');
         d.className = 'modal-thumb' + (i===current? ' active':'');
         const im = document.createElement('img');
-        im.src = s; im.alt = 'mini '+(i+1); im.style.width='100%'; im.style.height='100%'; im.style.objectFit='cover';
+        im.src = s; im.alt = 'thumb '+(i+1); im.style.width='100%'; im.style.height='100%'; im.style.objectFit='cover';
         d.appendChild(im);
         d.addEventListener('click',()=>{ current=i; modalImg.src = sources[current]; updateThumbs(); });
         thumbsContainer.appendChild(d);
@@ -165,14 +162,13 @@
     closeBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
 
-    // keyboard navigation
     document.addEventListener('keydown', e=>{
       if(!modal.classList.contains('open')) return;
       if(e.key==='ArrowRight'){ current = (current+1) % sources.length; modalImg.src = sources[current]; updateThumbs(); }
       if(e.key==='ArrowLeft'){ current = (current-1 + sources.length) % sources.length; modalImg.src = sources[current]; updateThumbs(); }
       if(e.key==='Escape'){ closeModal(); }
     });
-
   </script>
 </body>
 </html>
+
